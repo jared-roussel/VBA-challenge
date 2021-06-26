@@ -24,15 +24,22 @@ Cells(1, 12).Value = "Total Stock Value"
 Dim ticker As String
 Dim ticker_next As String
 Dim Summary_Row As Integer
+Dim open_value As Double
+Dim close_value As Double
+
+
 Summary_Row = 2
 
 
 ticker = Cells(2, 1).Value
+open_value = Cells(2, 3).Value
+
 'MsgBox (ticker)
 
-For i = 2 To 526
+For i = 2 To 70926
 ticker = Cells(i, 1).Value
 ticker_next = Cells(i + 1, 1).Value
+
 
 If ticker = ticker_next Then
   ticker = Cells(i + 1, 1).Value
@@ -42,10 +49,17 @@ If ticker = ticker_next Then
 ElseIf ticker <> ticker_next Then
 Range("I" & Summary_Row).Value = ticker
 
+close_value = Cells(i - 1, 6).Value
+
+Range("J" & Summary_Row).Value = (open_value - close_value)
+'Range("K" & Summary_Row).Value =
+
 Summary_Row = Summary_Row + 1
   End If
   
   ticker = ticker_next
+  open_value = Cells(i, 3).Value
+  
 Next i
 
 End Sub
