@@ -26,7 +26,7 @@ Dim ticker_next As String
 Dim Summary_Row As Integer
 Dim open_value As Double
 Dim close_value As Double
-Dim total_volume As String
+Dim total_volume As Long
 
 
 Summary_Row = 2
@@ -34,24 +34,25 @@ Summary_Row = 2
 
 ticker = Cells(2, 1).Value
 open_value = Cells(2, 3).Value
-
+'total_volume = Cells(2, 7).Value
 
 'MsgBox (ticker)
 
 For i = 2 To 70926
 ticker = Cells(i, 1).Value
 ticker_next = Cells(i + 1, 1).Value
-total_volume = 0
+
 
 If ticker = ticker_next Then
   ticker = Cells(i + 1, 1).Value
   ticker_next = Cells((i + 1) + 1, 1).Value
-  total_volume = total_volume + Cells(i - 1, 7).Value
+  total_volume = total_volume + Cells(i, 7).Value
   
 ElseIf ticker <> ticker_next Then
 Range("I" & Summary_Row).Value = ticker
 
 close_value = Cells(i - 1, 6).Value
+total_volue = total_volume
 
 Range("J" & Summary_Row).Value = (open_value - close_value)
 Range("K" & Summary_Row).Value = ((open_value - close_value) / open_value)
@@ -63,6 +64,9 @@ Summary_Row = Summary_Row + 1
   ticker = ticker_next
   open_value = Cells(i, 3).Value
   
+  
 Next i
+
+total_volume = 0
 
 End Sub
