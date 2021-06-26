@@ -28,7 +28,7 @@ Dim ticker_next As String
 ticker = Cells(2, 1).Value
 'MsgBox (ticker)
 
-For i = 2 To 264
+For i = 2 To 526
 ticker = Cells(i, 1).Value
 ticker_next = Cells(i + 1, 1).Value
 
