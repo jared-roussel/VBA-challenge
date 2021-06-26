@@ -26,6 +26,7 @@ Dim ticker_next As String
 Dim Summary_Row As Integer
 Dim open_value As Double
 Dim close_value As Double
+Dim total_volume As Long
 
 
 Summary_Row = 2
@@ -33,6 +34,7 @@ Summary_Row = 2
 
 ticker = Cells(2, 1).Value
 open_value = Cells(2, 3).Value
+
 
 'MsgBox (ticker)
 
@@ -52,7 +54,7 @@ Range("I" & Summary_Row).Value = ticker
 close_value = Cells(i - 1, 6).Value
 
 Range("J" & Summary_Row).Value = (open_value - close_value)
-'Range("K" & Summary_Row).Value =
+Range("K" & Summary_Row).Value = ((open_value - close_value) / open_value)
 
 Summary_Row = Summary_Row + 1
   End If
