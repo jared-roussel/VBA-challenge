@@ -23,6 +23,8 @@ Cells(1, 12).Value = "Total Stock Value"
 
 Dim ticker As String
 Dim ticker_next As String
+Dim Summary_Row As Integer
+Summary_Row = 2
 
 
 ticker = Cells(2, 1).Value
@@ -35,10 +37,15 @@ ticker_next = Cells(i + 1, 1).Value
 If ticker = ticker_next Then
   ticker = Cells(i + 1, 1).Value
   ticker_next = Cells((i + 1) + 1, 1).Value
+    
   
 ElseIf ticker <> ticker_next Then
-Cells(2, 9).Value = ticker
+Range("I" & Summary_Row).Value = ticker
+
+Summary_Row = Summary_Row + 1
   End If
+  
+  ticker = ticker_next
 Next i
 
 End Sub
