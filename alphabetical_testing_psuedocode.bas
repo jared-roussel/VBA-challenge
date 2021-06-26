@@ -1,5 +1,5 @@
 Attribute VB_Name = "Module1"
-Sub SingleSheetTesting():
+Sub Test():
 
 'Add new columns to the worksheet (Ticker, Yearly Change, Percent Change, Total Stock Volume)
 
@@ -8,14 +8,18 @@ Cells(1, 10).Value = "Yearly Change"
 Cells(1, 11).Value = "Percent Change"
 Cells(1, 12).Value = "Total Stock Value"
 
+
+'Dim wb As Workbook
 'Dim ws As Worksheet
 ' --------------------------
-'Set ws = Worksheets("Sheet1")
+'Set ws = Sheet("Sheet1")
 '---------------------------
 
 'Find the last row in the worksheet
-'Dim LastRow As String
-'LastRow = ActiveSheet.Cells(Row.Count, 1).End(xlUp).Row
+Dim LastRow As Double
+'LastRow = wb.ws.Cells(Rows.Count, 1).End(xlUp).Row
+LastRow = Cells(Rows.Count, 1).End(xlUp).Row
+
 'MsgBox (LastRow)
 '-----------------------------
 
@@ -45,7 +49,7 @@ total_volume = Cells(2, 7).Value
 'MsgBox (ticker)
 
 'Set loop condition for entire worksheet
-For i = 2 To 70926
+For i = 2 To LastRow
 ticker = Cells(i, 1).Value
 ticker_next = Cells(i + 1, 1).Value
 
@@ -54,6 +58,7 @@ If ticker = ticker_next Then
   ticker = Cells(i + 1, 1).Value
   ticker_next = Cells((i + 1) + 1, 1).Value
   total_volume = total_volume + Cells(i, 7).Value
+  
   
 ElseIf ticker <> ticker_next Then
 Range("I" & Summary_Row).Value = ticker
@@ -65,7 +70,7 @@ total_volue = total_volume
 'Update summary table values
 Range("J" & Summary_Row).Value = (open_value - close_value)
 Range("K" & Summary_Row).Value = ((open_value - close_value) / open_value)
-Range("L" & Summary_Row).Value = total_value
+Range("L" & Summary_Row).Value = total_volume
 
 
 'Increase Summary_Row
