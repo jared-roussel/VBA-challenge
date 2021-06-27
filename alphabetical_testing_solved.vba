@@ -5,7 +5,7 @@ Sub TickerLoop():
 Dim ws As Worksheet
 For Each ws In Worksheets
 
-Activate Worksheet
+'Activate Worksheet
 ws.Activate
 
 
@@ -16,7 +16,7 @@ Cells(1, 11).Value = "Percent Change"
 Cells(1, 12).Value = "Total Stock Volume"
 
 'Declare variables
-Dim ticker As String
+Dim Ticker As String
 Dim ticker_next As String
 Dim Summary_Row As Integer
 Dim open_value As Double
@@ -42,19 +42,19 @@ total_volume = 0
 
 'Set up loop for column A for ticker
 For i = 2 To LastRow
-    ticker = Cells(i, 1).Value
+    Ticker = Cells(i, 1).Value
     ticker_next = Cells(i + 1, 1).Value
 
 
     'Set conditionals for grouping ticker information while ticker and next ticker are equal
-    If ticker = ticker_next Then
+    If Ticker = ticker_next Then
         'ticker = Cells(i + 1, 1).Value
         'ticker_next = Cells((i + 1) + 1, 1).Value
         total_volume = total_volume + Cells(i, 7).Value
       
     'Set conditionals for populating the summary table once the ticker and next ticker do not equal
     Else
-        Range("I" & Summary_Row).Value = ticker
+        Range("I" & Summary_Row).Value = Ticker
     
         'Reset values for next conditional pass
         close_value = Cells(i, 6).Value
@@ -67,7 +67,7 @@ For i = 2 To LastRow
         If open_value > 0 And close_value > 0 Then
             percent_change = (((close_value - open_value) / open_value)) * 100
         Else
-            percent_change = 0
+            percent_change = open_value
         End If
         
         Range("J" & Summary_Row).Value = yearly_change
@@ -85,7 +85,7 @@ For i = 2 To LastRow
     End If
 
     'Reset values for next loop
-    ticker = ticker_next
+    Ticker = ticker_next
     
 
 Next i
