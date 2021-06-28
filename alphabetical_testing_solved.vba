@@ -25,6 +25,11 @@ Dim total_volume As Double
 Dim LastRow As Double
 Dim yearly_change As Double
 Dim percent_change As Double
+'Dim LastSummaryRow As Double
+Dim max_percent_change As Double
+Dim min_percent_change As Double
+Dim max_total_volume As Double
+
 
 'Find the last row in the worksheet
 LastRow = Cells(Rows.Count, 1).End(xlUp).Row
@@ -40,22 +45,22 @@ total_volume = 0
 'MsgBox (ticker)
 
 'Set up loop for column A for ticker
-For i = 2 To LastRow
-    Ticker = Cells(i, 1).Value
-    ticker_next = Cells(i + 1, 1).Value
+For I = 2 To LastRow
+    Ticker = Cells(I, 1).Value
+    ticker_next = Cells(I + 1, 1).Value
 
 
     'Set conditionals for grouping ticker information while ticker and next ticker are equal
     If Ticker = ticker_next Then
-        total_volume = total_volume + Cells(i, 7).Value
+        total_volume = total_volume + Cells(I, 7).Value
       
     'Set conditionals for populating the summary table once the ticker and next ticker do not equal
     Else
         Range("I" & Summary_Row).Value = Ticker
     
         'Reset values for next conditional pass
-        close_value = Cells(i, 6).Value
-        total_volume = total_volume + Cells(i, 7).Value
+        close_value = Cells(I, 6).Value
+        total_volume = total_volume + Cells(I, 7).Value
     
         'Update summary table values
         yearly_change = (close_value - open_value)
@@ -83,20 +88,45 @@ For i = 2 To LastRow
         
         'Reset the volume and open_value for the next i
         total_volume = 0
-        open_value = Cells(i + 1, 3).Value
+        open_value = Cells(I + 1, 3).Value
         
     End If
 
     'Reset values for next loop
     Ticker = ticker_next
-    
-    
-    
+        
 
-Next i
+Next I
+
+'Challenge Code for greatest % increase, % decrease and greatest volume
+
+Range("O1").Value = "Ticker"
+Range("P1").Value = "Value"
+Range("N2").Value = "Greatest % Increase"
+Range("N3").Value = "Greatest % Decrease"
+Range("N4").Value = "Greatest Total Volume"
+
+max_percent_change = WorksheetFunction.Max(Range("K:K"))
+Range("P2").Value = max_percent_change
+min_percent_change = WorksheetFunction.Min(Range("K:K"))
+Range("P3").Value = min_percent_change
+max_total_volume = WorksheetFunction.Max(Range("L:L"))
+Range("P4").Value = max_total_volume
+
+'---- Attempt to find ticker value for each max, min value
+'LastSummaryRow = Cells(Rows.Count, 9).End(xlUp).Row
+'Dim j As Integer
+'j = Range("I2:I & LastSummaryRow")
+
+'For j = 2 To LastSummaryRow
+    'If max_percent_change = Cells(j,
+
+
+
 
 
 Next ws
 
 
 End Sub
+
