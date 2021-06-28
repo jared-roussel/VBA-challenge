@@ -34,7 +34,6 @@ LastRow = Cells(Rows.Count, 1).End(xlUp).Row
 Summary_Row = 2
 
 'Initialize ticker, open_value, total_volume
-'ticker = Cells(2, 1).Value
 open_value = Cells(2, 3).Value
 total_volume = 0
 
@@ -48,8 +47,6 @@ For i = 2 To LastRow
 
     'Set conditionals for grouping ticker information while ticker and next ticker are equal
     If Ticker = ticker_next Then
-        'ticker = Cells(i + 1, 1).Value
-        'ticker_next = Cells((i + 1) + 1, 1).Value
         total_volume = total_volume + Cells(i, 7).Value
       
     'Set conditionals for populating the summary table once the ticker and next ticker do not equal
@@ -65,7 +62,7 @@ For i = 2 To LastRow
         
         'Nest If for evaluating the open value
         If open_value > 0 And close_value > 0 Then
-            percent_change = (((close_value - open_value) / open_value)) * 100
+            percent_change = (((close_value - open_value) / open_value))
         Else
             percent_change = open_value
         End If
@@ -74,6 +71,12 @@ For i = 2 To LastRow
         Range("K" & Summary_Row).Value = percent_change
         Range("L" & Summary_Row).Value = total_volume
     
+    'Conditionally format the Percent Change
+    If Range("K" & Summary_Row).Value <= 0 Then
+        Range("K" & Summary_Row).Interior.Color = vbRed
+    Else
+        Range("K" & Summary_Row).Interior.Color = vbGreen
+    End If
     
         'Increase Summary_Row
         Summary_Row = Summary_Row + 1
@@ -86,6 +89,8 @@ For i = 2 To LastRow
 
     'Reset values for next loop
     Ticker = ticker_next
+    
+    
     
 
 Next i
