@@ -1,5 +1,5 @@
-# VBA-challengeYear
-This VBA challenge required me to loop through the source code to group the tickers (column A) together and then aggregate the total stock volume, the yearly change and the percent change for the stock. The grouping and aggregation values are displayed within a summary table (columns I through L). The percent change column adds conditional formatting based upon if the percent change was positive or negative.
+# VBA-Challenge
+This VBA challenge required me to loop through the source code to group the tickers (column A) together and then aggregate the total stock volume, the yearly change and the percent change for the stock. The grouping and aggregated values are displayed within a summary table (columns I through L). The percent change column adds conditional formatting based upon if the percent change was positive or negative.
 
 Additionally, the greatest % increase (max) / decrease (min) and greatest (max) total stock volume are summarized in a 2nd summary table (columns N through P). 
 
