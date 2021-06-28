@@ -5,7 +5,7 @@ Additionally, the greatest % increase (max) / decrease (min) and greatest (max) 
 
 The VBA script loops through each worksheet in the Multiple Stock Years workbook. The workbook is saved in this repository and is named multiple_year_stock_data.xlsm while the screenshots of each worksheet is also displayed below. 
 
-The VBA final VBA script is saved within this repository and is named multiple_year_stock_data.vba. 
+The VBA final VBA script is saved within this repository and is named multiple_year_stock_data.vba. The alphabetical_testing_psuedocode.bas and alphabetical_testing_solved.vba files show the code interations as the challenge was being worked through.
 
 
 Year 2016
